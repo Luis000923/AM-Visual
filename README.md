@@ -1,7 +1,5 @@
 # AM Visual - Aplicación de Marcas de Agua
 
-![AM Visual Logo](https://drive.google.com/file/d/1PDedP8YEdyJN4aniPfCLX9udPwI7mVTt/view?usp=sharing)
-
 ## Descripción
 
 AM Visual es una aplicación de escritorio que permite añadir marcas de agua personalizadas a múltiples imágenes de forma sencilla y rápida. Ideal para fotografía profesional, portafolios, galerías en línea o cualquier caso donde se necesite proteger o firmar imágenes digitales.
@@ -17,10 +15,6 @@ AM Visual es una aplicación de escritorio que permite añadir marcas de agua pe
 - ✅ Vista previa en tiempo real
 - ✅ Interfaz gráfica intuitiva y moderna
 - ✅ Organización de marcas de agua con control de capas
-
-## Capturas de pantalla
-
-![Captura de pantalla principal](https://drive.google.com/file/d/1VyQuQrf1Ui5jnt7dauyz1hA6-fe7mXSA/view?usp=sharing)
 
 ## Requisitos
 
