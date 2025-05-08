@@ -111,4 +111,4 @@ Vides_2GA © 2025
 
 ---
 
-*AM Visual - La forma más sencilla de proteger tus imágenes con marcas de agua personalizadas*
+*AM Visual - La forma más sencilla de poner marcas de agua a tus imagenes*
