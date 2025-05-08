@@ -1,6 +1,6 @@
 # AM Visual - Aplicación de Marcas de Agua
 
-![AM Visual Logo](https://drive.google.com/file/d/1PDedP8YEdyJN4aniPfCLX9udPwI7mVTt/view?usp=drive_link)
+![AM Visual Logo](https://drive.google.com/file/d/1PDedP8YEdyJN4aniPfCLX9udPwI7mVTt/view?usp=sharing)
 
 ## Descripción
 
