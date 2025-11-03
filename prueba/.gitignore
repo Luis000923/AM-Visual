@@ -1,0 +1,6 @@
+# Ignore test images folder
+imagenes/
+
+# Keep ignore markers inside imagenes/
+!imagenes/.gitignore
+!imagenes/.gitkeep
