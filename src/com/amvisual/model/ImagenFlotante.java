@@ -202,6 +202,15 @@ public class ImagenFlotante {
     public String getNombreArchivo() { return nombreArchivo; }
     public boolean isEnMovimiento() { return enMovimiento; }
     
+    public Point getPosicionRelativa() {
+        return posicionRelativa;
+    }
+
+    public void setPosicionRelativa(double percentX, double percentY) {
+        this.posicionRelativa.x = (int) Math.max(0, Math.min(100, percentX));
+        this.posicionRelativa.y = (int) Math.max(0, Math.min(100, percentY));
+    }
+
     @Override
     public String toString() {
         return nombreArchivo;

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.amvisual.controllerfx.MainViewController"
+            fx:id="root" minWidth="1000.0" minHeight="700.0" 
+            style="-fx-font-family: 'Segoe UI', 'Arial'; -fx-font-size: 11;">
+    
+    <!-- SUPERIOR: Barra de herramientas -->
+    <top>
+        <VBox spacing="8" style="-fx-padding: 10; -fx-background-color: #f8f9fb;">
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 0 10;">
+                <Button fx:id="btnAddFolder" text="📁 Entrada" style="-fx-padding: 6 12; -fx-font-size: 11;" />
+                <Button fx:id="btnAddOutputFolder" text="💾 Salida" style="-fx-padding: 6 12; -fx-font-size: 11;" />
+                <Separator orientation="VERTICAL" />
+                <Button fx:id="btnAddWatermark" text="➕ Marca" style="-fx-padding: 6 12; -fx-font-size: 11;" />
+                <ComboBox fx:id="comboWatermarks" promptText="Selecciona Marca" HBox.hgrow="ALWAYS" maxWidth="250" />
+                <Button fx:id="btnDeleteWatermark" text="❌" style="-fx-padding: 6 10; -fx-font-size: 11;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- Indicador de caché de imágenes -->
+                <VBox spacing="2" alignment="CENTER_RIGHT" style="-fx-padding: 0 5;">
+                    <Label text="Imágenes en caché" style="-fx-font-size: 9; -fx-text-fill: #64748b;"/>
+                    <ProgressBar fx:id="imageCacheProgressBar" prefWidth="150" progress="0" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- CENTRO: Vista de imágenes -->
+    <center>
+        <HBox spacing="0">
+            <!-- Area principal de imágenes -->
+            <StackPane fx:id="centerStack" HBox.hgrow="ALWAYS" style="-fx-border-color: #e2e8f0; -fx-border-width: 1;">
+                <children>
+                    <!-- Vista previa -->
+                    <ScrollPane fx:id="previewScroll" fitToWidth="true" fitToHeight="true" visible="true" style="-fx-padding: 0;">
+                        <content>
+                            <StackPane style="-fx-background-color: #f8f9fb; -fx-padding: 0;">
+                                <children>
+                                    <ImageView fx:id="previewImage" preserveRatio="true" />
+                                    <Label fx:id="dropHint" text="Arrastra carpeta aquí o usa los botones" 
+                                           styleClass="drop-hint" 
+                                           style="-fx-font-size: 14; -fx-text-fill: #94a3b8;" />
+                                </children>
+                            </StackPane>
+                        </content>
+                    </ScrollPane>
+
+                    <!-- Cuadrícula de miniaturas -->
+                    <ScrollPane fx:id="gridScroll" fitToWidth="true" visible="false">
+                        <content>
+                            <TilePane fx:id="thumbsGrid" hgap="8" vgap="8" prefColumns="4" 
+                                      style="-fx-padding: 10; -fx-background-color: #f8f9fb;" />
+                        </content>
+                    </ScrollPane>
+                </children>
+            </StackPane>
+
+            <!-- DERECHA: Panel lateral con controles -->
+            <VBox fx:id="rightControls" spacing="10" style="-fx-padding: 12; -fx-border-color: #e2e8f0; -fx-border-width: 0 0 0 1; -fx-min-width: 250; -fx-pref-width: 280; -fx-max-width: 350;">
+                <Label text="Ajustes" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #10b981;" />
+                
+                <!-- Opacidad -->
+                <VBox spacing="3">
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="Opacidad" style="-fx-text-fill: #1e293b; -fx-font-weight: bold; -fx-font-size: 10;" />
+                        <Label fx:id="opacityLabel" text="70%" style="-fx-text-fill: #10b981; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" />
+                    </HBox>
+                    <Slider fx:id="sliderOpacity" min="0" max="1" value="0.7" 
+                            blockIncrement="0.05" />
+                </VBox>
+
+                <!-- Tamaño -->
+                <VBox spacing="3">
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="Tamaño" style="-fx-text-fill: #1e293b; -fx-font-weight: bold; -fx-font-size: 10;" />
+                        <Label fx:id="sizeLabel" text="50%" style="-fx-text-fill: #10b981; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" />
+                    </HBox>
+                    <Slider fx:id="sliderSize" min="0.05" max="5.0" value="0.5" 
+                            blockIncrement="0.1" showTickMarks="false" />
+                </VBox>
+
+                <Separator style="-fx-padding: 3 0;" />
+                
+                <Label text="💡 Arrastra la marca de agua en la imagen" 
+                       style="-fx-text-fill: #64748b; -fx-font-size: 9; -fx-wrap-text: true;" 
+                       wrapText="true" />
+
+                <Separator style="-fx-padding: 3 0;" />
+
+                <!-- Navegación entre imágenes -->
+                <VBox spacing="8" style="-fx-padding: 8 0;">
+                    <Label text="Navegación" style="-fx-text-fill: #1e293b; -fx-font-weight: bold; -fx-font-size: 10;" />
+                    <HBox spacing="5" alignment="CENTER">
+                        <Button fx:id="btnPrevImage" text="◀" style="-fx-padding: 6 12; -fx-font-size: 12;" />
+                        <Button fx:id="btnNextImage" text="▶" style="-fx-padding: 6 12; -fx-font-size: 12;" />
+                    </HBox>
+                    <Label fx:id="imageCountLabel" text="0 / 0" alignment="CENTER" style="-fx-text-fill: #64748b; -fx-font-size: 10;" />
+                </VBox>
+
+                <Separator style="-fx-padding: 3 0;" />
+
+                <!-- Vista y botones -->
+                <ToggleButton fx:id="toggleGrid" text="📊 Cuadrícula" maxWidth="Infinity" style="-fx-padding: 6;" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Procesamiento -->
+                <Button fx:id="btnProcess" text="⚡ PROCESAR" maxWidth="Infinity" 
+                        styleClass="primary" 
+                        style="-fx-padding: 10; -fx-font-size: 12; -fx-font-weight: bold;" />
+                <Button fx:id="btnCancel" text="⏹ Cancelar" maxWidth="Infinity" 
+                        visible="false" 
+                        style="-fx-padding: 8; -fx-font-size: 11;" />
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- INFERIOR: Progreso y estado -->
+    <bottom>
+        <VBox spacing="6" style="-fx-padding: 8; -fx-border-color: #e2e8f0; -fx-border-width: 1 0 0 0; -fx-background-color: #f8f9fb;">
+            <ProgressBar fx:id="progressBar" prefHeight="18" progress="0" />
+            <Label fx:id="statusLabel" text="Listo para comenzar" 
+                   style="-fx-text-fill: #1e293b; -fx-font-size: 10;" />
+        </VBox>
+    </bottom>
+</BorderPane>

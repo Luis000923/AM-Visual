@@ -75,6 +75,24 @@ public class ProyectoMarcaAgua {
     }
 
     /**
+     * Establece el índice actual de imagen si es válido.
+     * @param indice nuevo índice actual
+     */
+    public void setIndiceImagenActual(int indice) {
+        if (indice >= 0 && indice < listaImagenes.size()) {
+            this.indiceImagenActual = indice;
+        }
+    }
+    
+    /**
+     * Obtiene el índice de la imagen actual.
+     * @return El índice de la imagen actual
+     */
+    public int getIndiceImagenActual() {
+        return indiceImagenActual;
+    }
+
+    /**
      * Avanza a la siguiente imagen en la lista.
      * @return true si se pudo cambiar a la siguiente imagen, false si ya está en la última.
      */
