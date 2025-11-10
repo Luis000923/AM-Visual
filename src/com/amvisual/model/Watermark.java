@@ -1,15 +1,10 @@
+// Esta interfaz define el contrato para cualquier tipo de marca de agua (imagen o texto).
+// Permite tratar de forma genérica diferentes tipos de marcas.
 package com.amvisual.model;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-/**
- * Interfaz que define el contrato para cualquier tipo de marca de agua
- * (imagen o texto)
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public interface Watermark {
     
     /**

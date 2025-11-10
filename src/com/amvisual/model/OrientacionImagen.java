@@ -1,11 +1,10 @@
+// Esta enumeración representa la orientación de una imagen (Horizontal, Vertical, Cuadrada).
+// Se utiliza para aplicar diferentes configuraciones de marca de agua según la orientación.
+// Se conecta con:
+// - ProyectoMarcaAgua: Para clasificar las imágenes.
+// - ImagenFlotante: Para seleccionar la configuración de marca de agua correcta.
 package com.amvisual.model;
 
-/**
- * Enumeración que representa la orientación de una imagen
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public enum OrientacionImagen {
     /**
      * Imagen horizontal (ancho > alto)

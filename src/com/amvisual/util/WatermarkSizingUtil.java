@@ -1,11 +1,10 @@
+// Esta utilidad calcula el tamaño de las marcas de agua de forma proporcional
+// al tamaño de la imagen base.
 package com.amvisual.util;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
-/**
- * Utilidad para calcular tamaños de marcas de agua.
- */
 public class WatermarkSizingUtil {
 
     /**

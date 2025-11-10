@@ -1,15 +1,13 @@
+// Este módulo de utilidad proporciona métodos para operaciones con archivos.
+// Se utiliza para listar imágenes en carpetas y gestionar extensiones de archivo.
+// Se conecta con:
+// - MainViewController: Para cargar imágenes y crear carpetas de salida.
 package com.amvisual.util;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Utilidades para manejo de archivos
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public class FileUtils {
     
     private static final String[] EXTENSIONES_IMAGENES = {".png", ".jpg", ".jpeg"};

@@ -115,28 +115,36 @@ function Clean {
     }
 }
 
+# Verificar que las funciones estén disponibles
+if (-not (Get-Command CompileFX -ErrorAction SilentlyContinue)) {
+    Write-Host "Error: La función CompileFX no está definida correctamente." -ForegroundColor Red
+    exit 1
+}
+
 # Ejecutar acción
 switch ($Action) {
     'compile' { 
-        $result = Compile
+        Compile
     }
     'run' { 
-        Run 
+        Run
     }
     'clean' { 
-        Clean 
+        Clean
     }
     'all' { 
         Clean
-        if (Compile) {
+        $compileResult = Compile
+        if ($compileResult) {
             Run
         }
     }
     'compileFX' { 
-        $result = CompileFX
+        CompileFX
     }
     'runFX' { 
-        if (CompileFX) {
+        $compileResult = CompileFX
+        if ($compileResult) {
             RunFX
         }
     }

@@ -1,3 +1,5 @@
+// Esta clase implementa la interfaz `Watermark` para marcas de agua basadas en imágenes.
+// Se encarga de dibujar y gestionar una marca de agua de imagen.
 package com.amvisual.model;
 
 import java.awt.*;
@@ -5,12 +7,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-/**
- * Implementación de Watermark para marcas de agua basadas en imágenes
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public class ImageWatermark implements Watermark {
     
     private BufferedImage originalImage;

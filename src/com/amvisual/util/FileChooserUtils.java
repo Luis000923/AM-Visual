@@ -1,18 +1,13 @@
+// Esta utilidad proporciona diálogos de selección de archivos mejorados para la aplicación.
+// Se utiliza para elegir imágenes para marcas de agua y para seleccionar carpetas.
 package com.amvisual.util;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileView;
 import java.awt.*;
 import java.io.File;
 
-/**
- * Utilidades para crear diálogos de selección de archivos mejorados
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public class FileChooserUtils {
     
     /**

@@ -1,15 +1,15 @@
+// Esta utilidad se encarga de la conversión entre imágenes de AWT (BufferedImage) y JavaFX (Image).
+// Es crucial para conectar la lógica de procesamiento de imágenes con la interfaz de usuario.
+// Se conecta con:
+// - MainViewController: Para mostrar las imágenes procesadas en la UI.
 package com.amvisual.util;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-/**
- * Utilidades para interoperabilidad entre AWT BufferedImage y JavaFX Image.
- */
 public class FxImageUtils {
 
     /**

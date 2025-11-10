@@ -20,11 +20,6 @@
                 <ComboBox fx:id="comboWatermarks" promptText="Selecciona Marca" HBox.hgrow="ALWAYS" maxWidth="250" />
                 <Button fx:id="btnDeleteWatermark" text="❌" style="-fx-padding: 6 10; -fx-font-size: 11;" />
                 <Region HBox.hgrow="ALWAYS" />
-                <!-- Indicador de caché de imágenes -->
-                <VBox spacing="2" alignment="CENTER_RIGHT" style="-fx-padding: 0 5;">
-                    <Label text="Imágenes en caché" style="-fx-font-size: 9; -fx-text-fill: #64748b;"/>
-                    <ProgressBar fx:id="imageCacheProgressBar" prefWidth="150" progress="0" />
-                </VBox>
             </HBox>
         </VBox>
     </top>
@@ -77,9 +72,9 @@
                 <VBox spacing="3">
                     <HBox spacing="5" alignment="CENTER_LEFT">
                         <Label text="Tamaño" style="-fx-text-fill: #1e293b; -fx-font-weight: bold; -fx-font-size: 10;" />
-                        <Label fx:id="sizeLabel" text="50%" style="-fx-text-fill: #10b981; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" />
+                        <Label fx:id="sizeLabel" text="100%" style="-fx-text-fill: #10b981; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" />
                     </HBox>
-                    <Slider fx:id="sliderSize" min="0.05" max="5.0" value="0.5" 
+            <Slider fx:id="sliderSize" min="0.05" max="5.0" value="1.0" 
                             blockIncrement="0.1" showTickMarks="false" />
                 </VBox>
 

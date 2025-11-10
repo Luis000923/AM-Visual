@@ -1,18 +1,16 @@
+// Este es el modelo de datos principal de la aplicación.
+// Representa el estado completo del proyecto, incluyendo imágenes, marcas de agua y carpetas.
+// Se conecta con:
+// - ImagenFlotante: Gestiona una lista de marcas de agua.
+// - ImageCache: Utiliza un caché para optimizar la carga de imágenes.
+// - MainViewController: Es el modelo de datos que el controlador manipula.
 package com.amvisual.model;
 
 import com.amvisual.util.ImageCache;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Representa el proyecto completo de marcas de agua
- * Mantiene el estado de carpetas, imágenes y marcas de agua
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public class ProyectoMarcaAgua {
     
     private File carpetaEntrada;
@@ -52,16 +50,19 @@ public class ProyectoMarcaAgua {
     
     /**
      * Establece la lista de imágenes
+     * 
      * @param imagenes Lista de archivos de imagen
      */
     public void setListaImagenes(List<File> imagenes) {
         this.listaImagenes = imagenes;
+        
         if (!imagenes.isEmpty()) {
             this.indiceImagenActual = 0;
         } else {
             this.indiceImagenActual = -1;
         }
     }
+    
 
     /**
      * Obtiene la imagen actual que se está previsualizando.
@@ -121,10 +122,17 @@ public class ProyectoMarcaAgua {
      * @param marca Marca de agua a añadir
      */
     public void addMarcaAgua(ImagenFlotante marca) {
-        listaMarcasAgua.add(marca);
-        indiceMarcaSeleccionada = listaMarcasAgua.size() - 1;
+        if (marca != null) {
+            listaMarcasAgua.add(marca);
+        }
     }
-    
+
+    public void removeMarcaAgua(ImagenFlotante marca) {
+        if (marca != null) {
+            listaMarcasAgua.remove(marca);
+        }
+    }
+
     /**
      * Elimina una marca de agua del proyecto
      * @param indice Índice de la marca a eliminar

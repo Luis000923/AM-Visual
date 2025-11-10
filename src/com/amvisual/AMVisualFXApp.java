@@ -1,3 +1,10 @@
+// Este archivo es el punto de entrada de la aplicación JavaFX.
+// Se encarga de cargar la vista principal (MainView.fxml), configurar la escena
+// y mostrar la ventana inicial.
+// Se conecta con:
+// - /com/amvisual/viewfx/MainView.fxml: La definición de la interfaz de usuario.
+// - /com/amvisual/viewfx/css/light.css: La hoja de estilos para la apariencia.
+// - com.amvisual.controllerfx.MainViewController: El controlador asociado al FXML.
 package com.amvisual;
 
 import javafx.application.Application;
@@ -8,9 +15,6 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-/**
- * Entrada JavaFX para AM Visual (interfaz moderna con FXML y CSS).
- */
 public class AMVisualFXApp extends Application {
 
     @Override

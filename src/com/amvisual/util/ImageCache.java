@@ -1,3 +1,7 @@
+// Esta clase implementa un caché de memoria LRU para imágenes.
+// Almacena las imágenes cargadas para evitar lecturas repetitivas del disco.
+// Se conecta con:
+// - ProyectoMarcaAgua: Es utilizado por el modelo principal para gestionar la carga de imágenes.
 package com.amvisual.util;
 
 import java.awt.image.BufferedImage;
@@ -5,13 +9,6 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Caché LRU (Least Recently Used) para imágenes
- * Almacena las imágenes cargadas para evitar recargarlas constantemente
- * 
- * @author Vides_2GA
- * @version 1.0
- */
 public class ImageCache {
     
     private static final int MAX_CACHE_SIZE = 50; // Máximo de imágenes en caché

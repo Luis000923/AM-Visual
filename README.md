@@ -1,102 +1,40 @@
-# Proyecto AM Visual (Versión Java)
+# Proyecto AM Visual (Versión JavaFX)
 
-## 1. Resumen del Proyecto
+Este proyecto es una aplicación de escritorio para aplicar marcas de agua a imágenes de forma masiva. Originalmente desarrollado en Python y luego en Java Swing, esta versión ha sido migrada a **JavaFX** para aprovechar su moderna arquitectura de UI y capacidades de binding.
 
-Este proyecto es una adaptación de la aplicación de escritorio `AM_Visual` originalmente desarrollada en Python a Java, utilizando la biblioteca **Java Swing** para la interfaz gráfica. El objetivo principal es replicar y mejorar la funcionalidad de la aplicación original, que permite a los usuarios aplicar marcas de agua (imágenes) a sus fotos de manera interactiva y procesarlas en lote.
+## Dependencias del Proyecto
 
-## 2. Evolución y Arquitectura
+Este proyecto utiliza las siguientes tecnologías y bibliotecas:
 
-El desarrollo ha seguido un proceso iterativo, enfocado en la calidad y la escalabilidad del código:
+- **Java Development Kit (JDK)**: Versión 11 o superior.
+- **JavaFX SDK**: Biblioteca para la interfaz gráfica de usuario. Es necesario configurar el proyecto para que el IDE (como VS Code) pueda localizar y utilizar los módulos de JavaFX. Los módulos utilizados son:
+  - `javafx.controls`
+  - `javafx.fxml`
+  - `javafx.swing` (para la interoperabilidad con AWT/Swing si es necesario)
+- **Maven o Gradle (Recomendado)**: Para una gestión de dependencias más sencilla, aunque actualmente el proyecto se compila con scripts `build.ps1`/`build.bat`.
 
-1.  **Prototipo Inicial**: Se comenzó con una versión monolítica para establecer la funcionalidad básica.
-2.  **Refactorización a MVC**: A petición, el proyecto fue completamente reestructurado para seguir el patrón de diseño **Modelo-Vista-Controlador (MVC)**. Esto ha permitido una clara separación de responsabilidades, facilitando el mantenimiento, la depuración y la adición de nuevas características.
-    *   **Modelo (`com.amvisual.model`)**: Contiene la lógica de negocio y el estado de la aplicación (datos de imágenes, marcas de agua, etc.).
-    *   **Vista (`com.amvisual.view`)**: Responsable de la interfaz de usuario (ventanas, paneles, botones). No contiene lógica de negocio.
-    *   **Controlador (`com.amvisual.controller`)**: Actúa como intermediario, gestionando las acciones del usuario y actualizando el modelo y la vista según corresponda.
-    *   **Utilidades (`com.amvisual.util`)**: Clases de ayuda para tareas comunes como manipulación de archivos e imágenes.
+## Arquitectura
 
-## 3. Características Implementadas
+El proyecto sigue el patrón de diseño **Modelo-Vista-Controlador (MVC)**, adaptado a la arquitectura de JavaFX:
 
-*   **Carga de Imágenes**: Carga de una imagen base desde el sistema de archivos para previsualizar la marca de agua.
-*   **Añadir Marca de Agua**: Selección de una imagen para usarla como marca de agua.
-*   **Previsualización Interactiva**:
-    *   La marca de agua se muestra sobre la imagen base en un panel de previsualización.
-    *   **Ajuste de Opacidad y Escala**: Mediante deslizadores (sliders) se puede controlar la transparencia y el tamaño de la marca de agua en tiempo real.
-    *   **Movimiento de la Marca de Agua**: La marca de agua se puede arrastrar y soltar en cualquier parte de la imagen base con el ratón.
-*   **Selección de Destino**: Elección de una carpeta de salida donde se guardarán las imágenes procesadas.
-*   **Procesamiento de Imágenes**:
-    *   Aplica la marca de agua con la posición, escala y opacidad configuradas a la imagen original.
-    *   Guarda la imagen resultante en la carpeta de destino.
-*   **Interfaz de Usuario Mejorada**: Se implementó un selector de archivos y directorios (`JFileChooser`) personalizado que muestra una vista previa de las imágenes, mejorando la experiencia de usuario.
+- **Modelo (`com.amvisual.model`)**: Contiene la lógica de negocio y el estado de la aplicación. No tiene conocimiento de la interfaz de usuario.
+- **Vista (`com.amvisual.viewfx`)**: Definida en archivos FXML, describe la estructura de la interfaz de usuario.
+- **Controlador (`com.amvisual.controllerfx`)**: Conecta la vista (FXML) con el modelo. Gestiona los eventos de la UI y actualiza el estado de la aplicación.
 
-## 4. Estructura del Proyecto
+## Cómo Compilar y Ejecutar
 
-El proyecto está organizado de la siguiente manera para facilitar su comprensión y compilación:
-
-```
-AM_visual_java/
-├── src/                      # Código fuente Java
-│   └── com/
-│       └── amvisual/
-│           ├── model/
-│           ├── view/
-│           ├── controller/
-│           └── util/
-├── bin/                      # Archivos .class compilados
-├── build.bat                 # Script para compilar y ejecutar en Windows (CMD)
-├── build.ps1                 # Script para compilar y ejecutar en Windows (PowerShell)
-└── README.md                 # Este archivo
-```
-
-## 5. Componentes Clave
-
-*   `AplicacionMarcaAgua.java`: La clase principal que inicializa y ensambla los componentes MVC para lanzar la aplicación.
-*   `PanelPreview.java`: Un `JPanel` personalizado que renderiza la imagen base y las marcas de agua. Gestiona los eventos del ratón para el movimiento interactivo.
-*   `MarcaAguaController.java`: Maneja las acciones del usuario, como hacer clic en los botones para cargar imágenes o añadir marcas de agua.
-*   `ProyectoMarcaAgua.java`: El modelo principal que almacena la información sobre la imagen base, la lista de marcas de agua y la configuración del proceso.
-*   `ImagenFlotante.java`: Modelo que representa una marca de agua individual, con sus propiedades (posición, escala, opacidad) y su lógica de dibujado.
-*   `FileChooserUtils.java`: Utilidad que crea diálogos de selección de archivos mejorados con previsualización.
-
-## 6. Mejoras y Solución de Problemas
-
-Durante el desarrollo, se abordó un problema crítico que impedía mover las marcas de agua correctamente.
-
-*   **Bug**: El movimiento del ratón no se traducía correctamente a la posición de la marca de agua.
-*   **Causa Raíz**: Discrepancia entre el sistema de coordenadas del panel de previsualización (que muestra una imagen escalada) y el modelo (que trabaja con las coordenadas de la imagen original en alta resolución).
-*   **Solución**: Se implementó una lógica de conversión en `PanelPreview.java`. Ahora, antes de notificar al modelo sobre un movimiento, las coordenadas del evento del ratón se convierten calculando el factor de escala entre la imagen original y su representación en la vista. Esto asegura que la marca de agua se mueva de forma precisa e intuitiva, sin importar el tamaño de la ventana.
-
-## 7. Cómo Compilar y Ejecutar
-
-Para facilitar el proceso, se han incluido scripts de automatización:
+Se proporcionan scripts para facilitar la compilación y ejecución desde la terminal.
 
 1.  **Abre una terminal** en el directorio raíz `AM_visual_java`.
-2.  **Si usas PowerShell**:
-    *   Compilar: `.\build.ps1 compile`
-    *   Ejecutar: `.\build.ps1 run`
-3.  **Si usas CMD**:
-    *   Compilar: `build.bat compile`
-    *   Ejecutar: `build.bat run`
+2.  **Usando PowerShell**:
+    -   Compilar: `.\build.ps1 compileFX`
+    -   Ejecutar: `.\build.ps1 runFX`
+3.  **Usando CMD**:
+    -   Compilar: `build.bat compileFX`
+    -   Ejecutar: `build.bat runFX`
 
-La aplicación se iniciará y estará lista para usarse.
+La aplicación se iniciará, mostrando la interfaz principal para añadir imágenes y marcas de agua.
 
-## 8. Futuras Mejoras (Trabajo en Progreso)
-
-Se ha sentado la base para una arquitectura más avanzada que permitirá futuras expansiones:
-
-*   **Interfaz `Watermark`**: Se creó una interfaz para abstraer el concepto de una marca de agua.
-*   **Implementaciones Concretas**: Se desarrollaron las clases `ImageWatermark` y `TextWatermark`. El siguiente paso es integrarlas en la aplicación para permitir no solo imágenes, sino también texto como marcas de agua.
-*   **Procesamiento en Lote (`BatchProcessor`)**: Se planea usar un `SwingWorker` para procesar múltiples imágenes en segundo plano sin bloquear la interfaz de usuario, mostrando el progreso en una barra de estado.
-
-Este proyecto ha evolucionado hasta convertirse en una aplicación Java robusta y bien estructurada, sentando las bases para un desarrollo continuo y eficiente.
-2. **Vista notifica al Controlador** mediante callbacks
-3. **Controlador actualiza el Modelo** (ProyectoMarcaAgua)
-4. **Controlador actualiza la Vista** (PanelPreview)
-
-## ✨ Ventajas de esta Arquitectura
-
-### 1. **Separación de Responsabilidades**
-- Cada clase tiene una única responsabilidad
-- Fácil de entender y mantener
 
 ### 2. **Escalabilidad**
 - Fácil añadir nuevas funcionalidades
