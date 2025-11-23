@@ -1,0 +1,90 @@
+# Configuration for AM Visual AI
+
+# General settings
+general:
+  device: "cuda"  # cuda, cpu, or mps (for Mac)
+  num_workers: 4
+  batch_size: 1
+  
+# Paths
+paths:
+  input_dir: "data/input"
+  output_dir: "data/output"
+  temp_dir: "data/temp"
+  models_dir: "models"
+
+# Image Enhancement settings
+enhancement:
+  # Super Resolution
+  super_resolution:
+    enabled: true
+    model: "RealESRGAN_x4plus"  # RealESRGAN_x4plus, RealESRNet_x4plus, RealESRGAN_x2plus
+    scale: 4
+    tile_size: 512
+    tile_pad: 10
+    
+  # Denoising
+  denoising:
+    enabled: false
+    strength: 0.5
+    method: "bilateral"  # bilateral, nlm, gaussian
+    
+  # Sharpening
+  sharpening:
+    enabled: false
+    strength: 0.3
+    
+  # Color correction
+  color_correction:
+    enabled: false
+    auto_contrast: true
+    auto_brightness: false
+
+# Object Removal settings
+object_removal:
+  # Detection
+  detection:
+    enabled: true
+    model: "yolov8n"  # yolov8n, yolov8s, yolov8m, yolov8l, yolov8x
+    confidence_threshold: 0.25
+    iou_threshold: 0.45
+    classes: []  # Empty = all classes, or specify: [0, 1, 2] for specific classes
+    
+  # Segmentation
+  segmentation:
+    enabled: true
+    model: "sam"  # sam (Segment Anything Model)
+    
+  # Inpainting
+  inpainting:
+    enabled: true
+    model: "lama"  # lama, opencv
+    dilate_kernel_size: 15  # Expand mask size
+
+# Training settings
+training:
+  data_dir: "data/input"
+  checkpoint_dir: "checkpoints"
+  num_epochs: 100
+  batch_size: 16
+  learning_rate: 0.0001
+  lr_decay_step: 30
+  lr_decay_gamma: 0.5
+  patch_size: 128
+  scale: 2
+  save_freq: 5
+  val_split: 0.1
+    
+# Output settings
+output:
+  format: "png"  # png, jpg, jpeg, webp
+  quality: 95  # For JPEG/WebP (1-100)
+  save_intermediate: false  # Save intermediate processing steps
+  add_suffix: true  # Add processing type suffix to filename
+  
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  save_logs: true
+  log_file: "logs/processing.log"
+
